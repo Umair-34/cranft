@@ -8,4 +8,4 @@ class AdminProfile(admin.ModelAdmin):
     list_display = ('User', 'PhoneNumber')
 
 
-admin.site.register()
+admin.site.register(Profile, AdminProfile)
