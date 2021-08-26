@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # 3rd party packages
     'phonenumber_field',
     'django_summernote',
+    'verify_email.apps.VerifyEmailConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # summer note configuration
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+# login configuration
+LOGIN_URL = 'account:login'
+LOGIN_REDIRECT_URL = 'core:home'
+
+#email smtp
+# Email smtp setup
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'quantchefin@gmail.com'
+EMAIL_HOST_PASSWORD = 'dvaquvofmgwakkxv'
+
+DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'
