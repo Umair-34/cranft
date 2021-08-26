@@ -4,3 +4,7 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'core/index.html')
+
+
+def BlogList(request):
+    return render(request, 'core/blog_list.html')
