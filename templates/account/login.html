@@ -35,11 +35,12 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum obcaecati dignissimos quae quo ad iste ipsum officiis deleniti asperiores sit.</p>
                         </div>
                         <!-- Item Form -->
-                        <form class="item-form card no-hover">
+                        <form method="post" class="item-form card no-hover">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group mt-3">
-                                        <input type="email" class="form-control" name="email" placeholder="Enter your Email" required="required">
+                                        <input type="text" class="form-control" name="username" placeholder="Enter your Username" required="required">
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -59,26 +60,30 @@
                                     <button class="btn w-100 mt-3 mt-sm-4" type="submit">Sign In</button>
                                 </div>
                                 <div class="col-12">
-                                    <hr>
-                                    <div class="other-option">
-                                        <span class="d-block text-center mb-4">Or</span>
-                                        <!-- Social Icons -->
-                                        <div class="social-icons d-flex justify-content-center">
-                                            <a class="facebook" href="#">
-                                                <i class="fab fa-facebook-f"></i>
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a>
-                                            <a class="twitter" href="#">
-                                                <i class="fab fa-twitter"></i>
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                            <a class="google-plus" href="#">
-                                                <i class="fab fa-google-plus-g"></i>
-                                                <i class="fab fa-google-plus-g"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <span class="d-block text-center mt-4">Don't have an account? <a
+                                        href="{% url 'account:signup' %}">Signup</a></span>
+                            </div>
+{#                                <div class="col-12">#}
+{#                                    <hr>#}
+{#                                    <div class="other-option">#}
+{#                                        <span class="d-block text-center mb-4">Or</span>#}
+{#                                        <!-- Social Icons -->#}
+{#                                        <div class="social-icons d-flex justify-content-center">#}
+{#                                            <a class="facebook" href="#">#}
+{#                                                <i class="fab fa-facebook-f"></i>#}
+{#                                                <i class="fab fa-facebook-f"></i>#}
+{#                                            </a>#}
+{#                                            <a class="twitter" href="#">#}
+{#                                                <i class="fab fa-twitter"></i>#}
+{#                                                <i class="fab fa-twitter"></i>#}
+{#                                            </a>#}
+{#                                            <a class="google-plus" href="#">#}
+{#                                                <i class="fab fa-google-plus-g"></i>#}
+{#                                                <i class="fab fa-google-plus-g"></i>#}
+{#                                            </a>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
                             </div>
                         </form>
                     </div>

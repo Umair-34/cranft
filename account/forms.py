@@ -10,15 +10,15 @@ class RegisterForm(UserCreationForm):  # Extending UserCreationForm for registra
 
     class Meta:
         model = User
-        fields = ("username", "email", "is_active")
+        fields = ("username", "email")
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ('User', )
+        exclude = ('User', 'Image')
         widgets = {
-            'Image': forms.ImageField(attrs={'class': 'form-control'}),
+            # 'Image': forms.ImageField(attrs={'class': 'form-control'}),
             'PhoneNumber': forms.NumberInput(
                 attrs={'class': 'form-control', 'placeholder': '+91 111 1234567', 'type': 'tel'}),
         }

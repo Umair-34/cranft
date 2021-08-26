@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.contrib.auth.models import User
 
 from django.core.mail import send_mail, BadHeaderError
@@ -17,50 +16,59 @@ from django.utils.encoding import force_bytes
 
 from verify_email.email_handler import send_verification_email
 
-from .models import Profile
 from .forms import RegisterForm, ProfileForm
+
+from django.http import HttpResponse
 
 
 # Create your views here.
 
 def signup(request):
     if request.user.is_authenticated:
-        return redirect('core:home')
+        return HttpResponse('already authenticated')
+        # return redirect('core:home')
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         pform = ProfileForm(request.POST)
+        print('post request')
         if form.is_valid() and pform.is_valid():
+            print('form valid')
             inactive_user = send_verification_email(request, form)  # Send verification email to in-active user
             pinst = pform.save(commit=False)
             pinst.User = inactive_user
             pinst.save()
-            return redirect('accounts:email-activation')
+            return redirect('account:email-activation')
         else:
-            return render(request, 'accounts/signup.html', {'form': form, 'pform': pform})
+            print('form invalid')
+            return render(request, 'account/signup.html', {'form': form, 'pform': pform})
     else:
+        print('not post request')
         form = RegisterForm()
         pform = ProfileForm
-        return render(request, 'accounts/signup.html', {'form': form, 'pform': pform})
+        return render(request, 'account/signup.html', {'form': form, 'pform': pform})
 
 
 def signin(request):
     error = ''
     if request.user.is_authenticated:
-        return redirect('core:home')
+        # return redirect('core:home')
+        return HttpResponse('already authenticated')
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)  # authenticate user's, email and password
         if user is not None:
             login(request, user)
-            return redirect('core:home')
+            return HttpResponse('signin')
+            # return redirect('core:home')
         else:
             error = 'Invalid Username or Password'
             form = AuthenticationForm(request.POST)
-            return render(request, 'accounts/login.html', {'form': form, 'error': error})
+            return render(request, 'account/login.html', {'form': form, 'error': error})
     else:
         form = AuthenticationForm()
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'account/login.html', {'form': form})
 
 
 def signout(request):
@@ -77,7 +85,7 @@ def password_reset_request(request):  # password reset for loged-out user
             if associated_users.exists():
                 for user in associated_users:
                     subject = "Password Reset Requested"
-                    email_template_name = "accounts/password/password_reset_email.txt"  # email body stored in txt file
+                    email_template_name = "account/password/password_reset_email.txt"  # email body stored in txt file
                     c = {
                         "email": user.email,
                         'domain': '127.0.0.1:8000',
@@ -116,4 +124,4 @@ def change_password(request):  # change password for logged-in user
 
 
 def email_message(request):  # Show a message after signup process, to check email for verification
-    return render(request, 'accounts/email_message.html')
+    return render(request, 'account/email_message.html')

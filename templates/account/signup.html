@@ -36,64 +36,87 @@
                             quo ad iste ipsum officiis deleniti asperiores sit.</p>
                     </div>
                     <!-- Item Form -->
-                    <form class="item-form card no-hover">
+                    <form method="post" class="item-form card no-hover">
+                        {% csrf_token %}
+                        {% include 'account/form_errors.html' %}
                         <div class="row">
-                            <div class="col-12">
-                                <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="name" placeholder="Enter your Name"
-                                           required="required">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mt-3">
-                                    <input type="email" class="form-control" name="email" placeholder="Enter your Email"
-                                           required="required">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mt-3">
-                                    <input type="password" class="form-control" name="password"
-                                           placeholder="Enter your Password" required="required">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group mt-3">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">I agree to <a href="#">Privacy
-                                            Policy</a></label>
-                                    </div>
-                                </div>
-                            </div>
+                            {{ form.as_p }}
+                            {{ pform.as_p }}
+{#                            <div class="col-12">#}
+{#                                <div class="form-group mt-3">#}
+{#                                    <input type="text" class="form-control" name="username"#}
+{#                                           placeholder="Enter your User Name"#}
+{#                                           required="required">#}
+{#                                    {{ form.username }}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-12">#}
+{#                                <div class="form-group mt-3">#}
+{#                                    <input type="email" class="form-control" name="email" placeholder="Enter your Email"#}
+{#                                           required="required">#}
+{#                                    {{ form.email }}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-12">#}
+{#                                <div class="form-group mt-3">#}
+{#                                    <input type="password" class="form-control" name="password1"#}
+{#                                           placeholder="Enter your Password" required="required">#}
+{#                                                                {{ form.password1 }}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-12">#}
+{#                                <div class="form-group mt-3">#}
+{#                                    <input type="password" class="form-control" name="password2"#}
+{#                                           placeholder="Renter your Password" required="required">#}
+{#                                                                {{ form.password2 }}#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-12">#}
+{#                                <div class="form-group mt-3">#}
+{#                                    <input type="tel" class="form-control" name="PhoneNumber"#}
+{#                                           placeholder="Enter Your PhoneNumber" required="required">#}
+{#                                {{ pform.PhoneNumber }}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-12">#}
+{#                                <div class="form-group mt-3">#}
+{#                                    <div class="form-check form-check-inline">#}
+{#                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"#}
+{#                                               id="inlineRadio1" value="option1">#}
+{#                                        <label class="form-check-label" for="inlineRadio1">I agree to <a href="#">Privacy#}
+{#                                            Policy</a></label>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
                             <div class="col-12">
                                 <button class="btn w-100 mt-3 mt-sm-4" type="submit">Sign Up</button>
                             </div>
                             <div class="col-12">
                                 <span class="d-block text-center mt-4">Already have an account? <a
-                                        href="odd-login.html">Login</a></span>
+                                        href="{% url 'account:login' %}">Login</a></span>
                             </div>
-                            <div class="col-12">
-                                <hr>
-                                <div class="other-option">
-                                    <span class="d-block text-center mb-4">Or</span>
-                                    <!-- Social Icons -->
-                                    <div class="social-icons d-flex justify-content-center">
-                                        <a class="facebook" href="#">
-                                            <i class="fab fa-facebook-f"></i>
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a class="twitter" href="#">
-                                            <i class="fab fa-twitter"></i>
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a class="google-plus" href="#">
-                                            <i class="fab fa-google-plus-g"></i>
-                                            <i class="fab fa-google-plus-g"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+{#                            <div class="col-12">#}
+{#                                <hr>#}
+{#                                <div class="other-option">#}
+{#                                    <span class="d-block text-center mb-4">Or</span>#}
+{#                                    <!-- Social Icons -->#}
+{#                                    <div class="social-icons d-flex justify-content-center">#}
+{#                                        <a class="facebook" href="#">#}
+{#                                            <i class="fab fa-facebook-f"></i>#}
+{#                                            <i class="fab fa-facebook-f"></i>#}
+{#                                        </a>#}
+{#                                        <a class="twitter" href="#">#}
+{#                                            <i class="fab fa-twitter"></i>#}
+{#                                            <i class="fab fa-twitter"></i>#}
+{#                                        </a>#}
+{#                                        <a class="google-plus" href="#">#}
+{#                                            <i class="fab fa-google-plus-g"></i>#}
+{#                                            <i class="fab fa-google-plus-g"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
                         </div>
                     </form>
                 </div>
