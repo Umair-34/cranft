@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Blog
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import *
 
 
 # Create your views here.
@@ -23,3 +24,8 @@ def BlogDetail(request, id):
         'obj': queryset,
     }
     return render(request, 'core/blog_detail.html', context)
+
+@login_required()
+def UploadImage(request):
+    if request.method == 'POST':
+        pass

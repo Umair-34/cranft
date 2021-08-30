@@ -97,7 +97,7 @@ def password_reset_request(request):  # password reset for loged-out user
                     }
                     email = render_to_string(email_template_name, c)  # All email data rendered as string
                     try:
-                        send_mail(subject, email, 'panda.throwawayyy@gmail.com', [user.email],
+                        send_mail(subject, email, 'quantchefin@gmail.com', [user.email],
                                   fail_silently=True)  # Send Email
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
