@@ -77,12 +77,14 @@
                             </div>
                         </div>
                         <!-- Item Form -->
-                        <form class="item-form card no-hover">
+                        <form method="post" enctype="multipart/form-data" class="item-form card no-hover">
+                            {% csrf_token %}
+                            {% include 'accounts/form_errors.html' %}
                             <div class="row">
                                 <div class="col-12">
                                     <div class="input-group form-group">
                                         <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                          <input type="file" class="custom-file-input" id="id_Video" name="Video">
                                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         </div>
                                     </div>

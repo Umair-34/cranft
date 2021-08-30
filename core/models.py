@@ -6,7 +6,7 @@ from django.urls import reverse
 # Create your models here.
 class Images(models.Model):
     User = models.ForeignKey(User, on_delete=models.CASCADE)
-    Image = models.ImageField(upload_to='images/')
+    Image = models.FileField(upload_to='images/')
 
     def __str__(self):
         return f'{self.User}'
