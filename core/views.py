@@ -29,3 +29,7 @@ def BlogDetail(request, id):
 def UploadImage(request):
     if request.method == 'POST':
         pass
+
+
+def UserProfile(request):
+    return render(request, 'core/profile.html')
