@@ -40,12 +40,12 @@ def signup(request):
             return redirect('account:email-activation')
         else:
             print('form invalid')
-            return render(request, 'account/signup.html', {'form': form, 'pform': pform})
+            return render(request, 'accounts/signup.html', {'form': form, 'pform': pform})
     else:
         print('not post request')
         form = RegisterForm()
         pform = ProfileForm
-        return render(request, 'account/signup.html', {'form': form, 'pform': pform})
+        return render(request, 'accounts/signup.html', {'form': form, 'pform': pform})
 
 
 def signin(request):
@@ -65,10 +65,10 @@ def signin(request):
         else:
             error = 'Invalid Username or Password'
             form = AuthenticationForm(request.POST)
-            return render(request, 'account/login.html', {'form': form, 'error': error})
+            return render(request, 'accounts/login.html', {'form': form, 'error': error})
     else:
         form = AuthenticationForm()
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 
 def signout(request):
@@ -85,7 +85,7 @@ def password_reset_request(request):  # password reset for loged-out user
             if associated_users.exists():
                 for user in associated_users:
                     subject = "Password Reset Requested"
-                    email_template_name = "account/password/password_reset_email.txt"  # email body stored in txt file
+                    email_template_name = "accounts/password/password_reset_email.txt"  # email body stored in txt file
                     c = {
                         "email": user.email,
                         'domain': '127.0.0.1:8000',
@@ -124,4 +124,4 @@ def change_password(request):  # change password for logged-in user
 
 
 def email_message(request):  # Show a message after signup process, to check email for verification
-    return render(request, 'account/email_message.html')
+    return render(request, 'accounts/email_message.html')

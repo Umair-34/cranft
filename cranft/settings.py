@@ -127,7 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # login configuration
-LOGIN_URL = 'account:login'
+LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'core:home'
 
 #email smtp

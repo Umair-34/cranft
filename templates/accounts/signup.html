@@ -13,7 +13,6 @@
                         <h2 class="m-0">Signup</h2>
                         <ol class="breadcrumb d-flex justify-content-center">
                             <li class="breadcrumb-item"><a href="odd-index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
                             <li class="breadcrumb-item active">Signup</li>
                         </ol>
                     </div>
@@ -38,7 +37,7 @@
                     <!-- Item Form -->
                     <form method="post" class="item-form card no-hover">
                         {% csrf_token %}
-                        {% include 'account/form_errors.html' %}
+                        {% include 'accounts/form_errors.html' %}
                         <div class="row">
                             {{ form.as_p }}
                             {{ pform.as_p }}
