@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # custom apps
     'core.apps.CoreConfig',
-    'account',
+    'accounts',
     # 3rd party packages
     'phonenumber_field',
     'django_summernote',

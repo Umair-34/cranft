@@ -1,7 +1,8 @@
-from django.urls import path
-from .views import *
+from django.contrib import admin
+from django.urls import path, include
+from .views import signin, signup, signout, change_password, password_reset_request, email_message
 
-app_name = 'account'
+app_name = "accounts"   # App name for calling Url's in template/Html
 
 urlpatterns = [
     path('', signin, name="login"),
