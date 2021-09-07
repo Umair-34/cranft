@@ -13,9 +13,8 @@
                         <div class="breadcrumb-content text-center">
                             <h2 class="m-0">Blog Single</h2>
                             <ol class="breadcrumb d-flex justify-content-center">
-                                <li class="breadcrumb-item"><a href="odd-index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Community</a></li>
-                                <li class="breadcrumb-item active">Blog Single</li>
+                                <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                                <li class="breadcrumb-item active">Blog</li>
                             </ol>
                         </div>
                     </div>
@@ -48,28 +47,6 @@
                                 </ul>
 
                                 <!-- Comments -->
-                                <h3 class="comments-reply-text mb-3">Leave a Reply</h3>
-                                <p class="mt-3">Sed mauris nulla, tempor eu est vel, dapibus hendrerit mauris.</p>
-                                <form>
-                                    <fieldset>
-                                        <div class="row">
-                                            <div class="col-12 col-lg-6 input-group p-0 pr-lg-3 mb-3">
-                                                <input type="text" name="name" data-minlength="3" placeholder="Name" required>
-                                            </div>
-                                            <div class="col-12 col-lg-6 input-group p-0 mb-3">
-                                                <input type="email" name="email" data-minlength="3" placeholder="Email" required>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 input-group p-0 mb-3">
-                                                <textarea name="message" data-minlength="3" rows="4" placeholder="Message" required></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 input-group p-0">
-                                            <a class="btn btn-bordered-white text-white">POST COMMENT<i class="icon-login ml-2"></i></a>
-                                        </div>
-                                    </fieldset>
-                                </form>
                             </div>
                         </div>
                     </div>

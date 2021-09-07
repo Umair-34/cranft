@@ -63,7 +63,7 @@
         <nav data-aos="zoom-out" data-aos-delay="800" class="navbar navbar-expand">
             <div class="container header">
                 <!-- Navbar Brand-->
-                <a class="navbar-brand" href="odd-index.html">
+                <a class="navbar-brand" href="{% url 'core:home' %}">
                     <img class="navbar-brand-sticky" src="{% static 'assets/img/logo/logo-white.png' %}"
                          alt="sticky brand-logo">
                 </a>
@@ -75,36 +75,51 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{% url 'core:bloglist' %}">Blog </a>
+                        <a class="nav-link" href="{% url 'core:explore' %}">Explore</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{% url 'core:bloglist' %}">Help Center </a>
                     </li>
                     <li class="nav-item">
-                        <a href="odd-contact.html" class="nav-link">Contact</a>
+                        <a href="{% url 'core:contact' %}" class="nav-link">Contact</a>
                     </li>
+                    {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:signup' %}" class="nav-link">Create</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <!-- Navbar Icons -->
-{#                <ul class="navbar-nav icons">#}
-{#                    <li class="nav-item">#}
-{#                        <a href="#" class="nav-link" data-toggle="modal" data-target="#search">#}
-{#                            <i class="fas fa-search"></i>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                </ul>#}
+                {#                <ul class="navbar-nav icons">#}
+                {#                    <li class="nav-item">#}
+                {#                        <a href="#" class="nav-link" data-toggle="modal" data-target="#search">#}
+                {#                            <i class="fas fa-search"></i>#}
+                {#                        </a>#}
+                {#                    </li>#}
+                {#                </ul>#}
 
                 <!-- Navbar Toggler -->
-{#                <ul class="navbar-nav toggle">#}
-{#                    <li class="nav-item">#}
-{#                        <a href="#" class="nav-link" data-toggle="modal" data-target="#menu">#}
-{#                            <i class="fas fa-bars toggle-icon m-0"></i>#}
-{#                        </a>#}
-{#                    </li>#}
-{#                </ul>#}
+                <ul class="navbar-nav toggle">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#menu">
+                            <i class="fas fa-bars toggle-icon m-0"></i>
+                        </a>
+                    </li>
+                </ul>
 
                 <!-- Navbar Action Button -->
                 <ul class="navbar-nav action">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item ml-3">
+                        <a href="{% url 'core:profile' %}" class="btn ml-lg-auto btn-bordered-white"><i
+                                class="icon-wallet mr-md-2"></i>Profile</a>
+                    </li>
+                    {% else %}
                     <li class="nav-item ml-3">
                         <a href="{% url 'accounts:login' %}" class="btn ml-lg-auto btn-bordered-white"><i
                                 class="icon-wallet mr-md-2"></i>Login</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -117,13 +132,13 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-7">
                     <span>NetStorm</span>
-                    <h1 class="mt-4">Discover, collect, and sell extraordinary NFTs</h1>
-                    <p>Explore on the world's best & largest NFT marketplace</p>
+                    <h1 class="mt-4">Make Art, <br> Make Money</h1>
+                    <p>Turn your art into unique digital itmes.</p>
                     <!-- Buttons -->
                     <div class="button-group">
-                        <a class="btn btn-bordered-white" href="odd-explore-1.html"><i class="icon-rocket mr-2"></i>Explore</a>
-                        <a class="btn btn-bordered-white" href="odd-create.html"><i
-                                class="icon-note mr-2"></i>Create</a>
+                        <a class="btn btn-bordered-white" href="{% url 'accounts:signup' %}"><i class="icon-rocket mr-2"></i>GET STARTED</a>
+                        <a class="btn btn-bordered-white" href="{% url 'core:explore' %}"><i
+                                class="icon-note mr-2"></i>Explore</a>
                     </div>
                 </div>
             </div>

@@ -7,8 +7,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class Profile(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE)
-    Image = models.ImageField(upload_to='profile_images/')
+    Image = models.ImageField(upload_to='profile_images/', verbose_name="Profile Picture")
     PhoneNumber = PhoneNumberField()
+    Tagline = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.User} {self.PhoneNumber}'

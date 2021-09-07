@@ -1,6 +1,4 @@
 {% load static %}
-<!doctype html>
-<html class="no-js" lang="en">
 
 
 <head>
@@ -63,32 +61,56 @@
         <nav data-aos="zoom-out" data-aos-delay="800" class="navbar navbar-expand">
             <div class="container header">
                 <!-- Navbar Brand-->
-                <a class="navbar-brand" href="odd-index.html">
-                    <img class="navbar-brand-sticky" src="{% static 'assets/img/logo/logo-white.png' %}" alt="sticky brand-logo">
+                <a class="navbar-brand" href="{% url 'core:home' %}">
+                    <img class="navbar-brand-sticky" src="{% static 'assets/img/logo/logo-white.png' %}"
+                         alt="sticky brand-logo">
                 </a>
                 <div class="ml-auto"></div>
                 <!-- Navbar -->
 
                 <ul class="navbar-nav items" style="margin-right: 28%">
-                     <li class="nav-item active dropdown">
+                    <li class="nav-item active dropdown">
                         <a class="nav-link" href="{% url 'core:home' %}">Home</a>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{% url 'core:bloglist' %}">Blog </a>
+                        <a class="nav-link" href="{% url 'core:explore' %}">Explore</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{% url 'core:bloglist' %}">Help Center </a>
                     </li>
                     <li class="nav-item">
-                        <a href="odd-contact.html" class="nav-link">Contact</a>
+                        <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
+                    </li>
+                     {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:signup' %}" class="nav-link">Create</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <!-- Navbar Toggler -->
+                <ul class="navbar-nav toggle">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#menu">
+                            <i class="fas fa-bars toggle-icon m-0"></i>
+                        </a>
                     </li>
                 </ul>
 
 
                 <!-- Navbar Action Button -->
                 <ul class="navbar-nav action">
-                    <li class="nav-item ml-3">
-                        <a href="odd-wallet-connect.html" class="btn ml-lg-auto btn-bordered-white"><i
-                                class="icon-wallet mr-md-2"></i>Login</a>
-                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item ml-3">
+                            <a href="{% url 'core:profile' %}" class="btn ml-lg-auto btn-bordered-white"><i
+                                    class="icon-wallet mr-md-2"></i>Profile</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item ml-3">
+                            <a href="{% url 'accounts:login' %}" class="btn ml-lg-auto btn-bordered-white"><i
+                                    class="icon-wallet mr-md-2"></i>Login</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -110,7 +132,7 @@
                         <div class="footer-items">
                             <!-- Logo -->
                             <a class="navbar-brand" href="odd-index.html">
-                                <img src="{% static 'assets/img/logo/logo.png' %}" alt="">
+                                <img style="width: 20%" src="{% static 'assets/img/logo/logo-white.png' %}" alt="">
                             </a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis non, fugit totam vel
                                 laboriosam vitae.</p>

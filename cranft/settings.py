@@ -128,7 +128,7 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # login configuration
 LOGIN_URL = 'accounts:login'
-LOGIN_REDIRECT_URL = 'core:home'
+LOGIN_REDIRECT_URL = 'core:profile'
 
 #email smtp
 # Email smtp setup

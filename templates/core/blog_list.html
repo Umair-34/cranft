@@ -13,7 +13,7 @@
                     <div class="breadcrumb-content text-center">
                         <h2 class="m-0">Blog</h2>
                         <ol class="breadcrumb d-flex justify-content-center">
-                            <li class="breadcrumb-item"><a href="odd-index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
                             <li class="breadcrumb-item active">Blog</li>
                         </ol>
                     </div>
@@ -28,39 +28,35 @@
         <div class="container">
             <div class="row items">
                 {% for obj in obj %}
+
                     <div class="col-12 col-md-4 item">
                         <!-- Single Blog -->
                         <div class="card blog-card">
                             <!-- Blog Thumb -->
                             <div class="blog-thumb">
-                                <a href="odd-blog-single.html"><img src="{{ obj.Image.url }}"
-                                                                    alt=""></a>
+                                <a href="{{ obj.Image.url }}"><img src="{{ obj.Image.url }}" alt=""></a>
                             </div>
                             <!-- Blog Content -->
                             <div class="blog-content">
                                 <!-- Meta Info -->
                                 <ul class="meta-info d-flex justify-content-between list-unstyled mt-4">
                                     {% if obj.Author|length %}
-                                    <li>By <a href="">Junaid Hasan</a></li>
+                                        <li>By <a href="{% url 'core:blogdetail' obj.pk %}">{{ obj.Author }}</a></li>
                                     {% endif %}
-                                    <li><a href="">{{ obj.Date }}</a></li>
+                                    <li><a href="{% url 'core:blogdetail' obj.pk %}">{{ obj.Date }}</a></li>
                                 </ul>
                                 <!-- Blog Title -->
-                                <a href="odd-blog-single.html">
+                                <a href="{% url 'core:blogdetail' obj.pk %}">
                                     <h4>{{ obj.Title }}</h4>
                                 </a>
                                 <p>{{ obj.Tagline }}</p>
                                 <!-- Blog Button -->
-                                <a class="btn content-btn" href="{% url 'core:blogdetail' obj.id %}">Read More</a>
+                                <a class="btn content-btn" href="{% url 'core:blogdetail' obj.pk %}">Read More</a>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-            </div>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <a id="load-btn" class="btn btn-bordered-white mt-5" href="#">Load More</a>
-                </div>
+
             </div>
         </div>
     </section>

@@ -44,7 +44,7 @@ def signup(request):
 def signin(request):
     error = ''
     if request.user.is_authenticated:
-        return redirect('core:home')
+        return redirect('core:profile')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -52,7 +52,7 @@ def signin(request):
         print(user)
         if user is not None:
             login(request, user)
-            return redirect('core:home')
+            return redirect('core:profile')
         else:
             error = 'Invalid Username or Password'
             form = AuthenticationForm(request.POST)

@@ -11,5 +11,5 @@ class AdminBlog(SummernoteModelAdmin):
 
 
 admin.site.register(Blog, AdminBlog)
-admin.site.register(Images)
 admin.site.register(Videos)
+admin.site.register(Contact)

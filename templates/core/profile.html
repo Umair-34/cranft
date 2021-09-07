@@ -3,100 +3,120 @@
 {% load static %}
 
 {% block content %}
- <!-- ***** Breadcrumb Area Start ***** -->
-        <section class="breadcrumb-area overlay-dark d-flex align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <!-- Breamcrumb Content -->
-                        <div class="breadcrumb-content text-center">
-                            <h2 class="m-0">Create</h2>
-                            <ol class="breadcrumb d-flex justify-content-center">
-                                <li class="breadcrumb-item"><a href="odd-index.html">Home</a></li>
-                                <li class="breadcrumb-item active">User Name</li>
-                            </ol>
-                        </div>
+    <!-- ***** Breadcrumb Area Start ***** -->
+    <section class="breadcrumb-area overlay-dark d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Breamcrumb Content -->
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="m-0">Create</h2>
+                        <ol class="breadcrumb d-flex justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                            <li class="breadcrumb-item active">{{ request.user.username }}</li>
+                        </ol>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- ***** Breadcrumb Area End ***** -->
+        </div>
+    </section>
+    <!-- ***** Breadcrumb Area End ***** -->
 
-        <!-- ***** Create Area Start ***** -->
-        <section class="author-area">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-12 col-md-4">
-                        <!-- Author Profile -->
-                        <div class="card no-hover text-center">
-                            <div class="image-over">
-                                <img class="card-img-top" src="{% static 'assets/img/content/auction_5.html' %}" alt="">
-                                <!-- Author -->
-                                <div class="author">
-                                    <div class="author-thumb avatar-lg">
-                                        <img class="rounded-circle" src="{% static 'assets/img/content/avatar_8.jpg' %}" alt="">
-                                    </div>
+    <!-- ***** Create Area Start ***** -->
+    <section class="author-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-4">
+                    <!-- Author Profile -->
+                    <div class="card no-hover text-center">
+                        <div class="image-over">
+                            <img class="card-img-top" src="{% static 'assets/img/content/auction_5.html' %}" alt="">
+                            <!-- Author -->
+                            <div class="author">
+                                <div class="author-thumb avatar-lg">
+                                    {% if profile|length %}
+                                        <img class="rounded-circle" src="{{ profile.url }}"
+                                             alt="">
+                                    {% else %}
+                                        <img class="rounded-circle" src="{% static 'assets/img/content/avatar_8.jpg' %}"
+                                             alt="">
+                                    {% endif %}
                                 </div>
                             </div>
-                            <!-- Card Caption -->
-                            <div class="card-caption col-12 p-0">
-                                <!-- Card Body -->
-                                <div class="card-body mt-4">
-                                    <h5 class="mb-3">Artnox</h5>
-                                    <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    <!-- Social Icons -->
-{#                                    <div class="social-icons d-flex justify-content-center my-3">#}
-{#                                        <a class="facebook" href="#">#}
-{#                                            <i class="fab fa-facebook-f"></i>#}
-{#                                            <i class="fab fa-facebook-f"></i>#}
-{#                                        </a>#}
-{#                                        <a class="twitter" href="#">#}
-{#                                            <i class="fab fa-twitter"></i>#}
-{#                                            <i class="fab fa-twitter"></i>#}
-{#                                        </a>#}
-{#                                        <a class="google-plus" href="#">#}
-{#                                            <i class="fab fa-google-plus-g"></i>#}
-{#                                            <i class="fab fa-google-plus-g"></i>#}
-{#                                        </a>#}
-{#                                        <a class="vine" href="#">#}
-{#                                            <i class="fab fa-vine"></i>#}
-{#                                            <i class="fab fa-vine"></i>#}
-{#                                        </a>#}
-{#                                    </div>#}
-{#                                    <a class="btn btn-bordered-white btn-smaller" href="#">Follow</a>#}
+                        </div>
+                        <!-- Card Caption -->
+                        <div class="card-caption col-12 p-0">
+                            <!-- Card Body -->
+                            <div class="card-body mt-4">
+                                <h5 class="mb-3">{{ request.user.username }}</h5>
+                                <p class="my-3">{{ request.user.profile.Tagline }}</p>
+                                <!-- Social Icons -->
+                                <div class="row">
+                                    <div class="col">
+                                        <a class="btn btn-bordered-white btn-smaller"
+                                              href="{% url 'core:editprofile' %}" >Edit Porfile
+                                        </a>
+                                    </div>
+                                    <div class="col">
+
+                                        <a class="btn btn-bordered-white btn-smaller"
+                                           href="{% url 'accounts:signout' %}">Logout</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-7">
-                        <!-- Intro -->
+                </div>
+                <div class="col-12 col-md-7">
+                    <!-- Intro -->
+                    <div class="intro mt-5 mt-lg-0 mb-4 mb-lg-5">
+                        <div class="intro-content">
+                            <span>Upload Content</span>
+
+                        </div>
+                    </div>
+                    <!-- Item Form -->
+                    <div class="col-12">
+                        <a class="btn w-100 mt-3 mt-sm-4 nav-link" href="{% url 'core:content' %}">Upload
+                            Content
+                        </a>
+                    </div>
+                    <div class="container" style="margin-top: 5%">
                         <div class="intro mt-5 mt-lg-0 mb-4 mb-lg-5">
                             <div class="intro-content">
-                                <span>Get Started</span>
-                                <h3 class="mt-3 mb-0">Upload Content</h3>
+                                <span>Your content</span>
+                                <h3 class="mt-3 mb-0">Uploaded Content</h3>
                             </div>
                         </div>
-                        <!-- Item Form -->
-                        <form method="post" enctype="multipart/form-data" class="item-form card no-hover">
-                            {% csrf_token %}
-                            {% include 'accounts/form_errors.html' %}
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="input-group form-group">
-                                        <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="id_Video" name="Video">
-                                          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <div class="row items">
+                            {% for obj in obj %}
+                                <div class="col-12 col-md-4 item">
+                                    <!-- Single Blog -->
+                                    <div class="card blog-card">
+                                        <!-- Blog Thumb -->
+                                        <div class="blog-thumb">
+                                            <a href="{{ obj.Video.url }}"><img style="width: 100%; height: 100px"
+                                                                               src="{{ obj.Video.url }}"
+                                                                               alt=""></a>
+                                        </div>
+                                        <!-- Blog Content -->
+                                        <div class="blog-content">
+                                            <!-- Meta Info -->
+                                            <ul class="meta-info d-flex justify-content-between list-unstyled mt-4">
+                                                <li><a href="">{{ obj.Date }}</a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <button class="btn w-100 mt-3 mt-sm-4" type="submit">Create Item</button>
-                                </div>
-                            </div>
-                        </form>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- ***** Create Area End ***** -->
+        </div>
+    </section>
+    <!-- ***** Create Area End ***** -->
+
+
+
 {% endblock %}
