@@ -33,10 +33,12 @@ def BlogDetail(request, id):
 def UserProfile(request):
     ProfilePicture = Profile.objects.get(User=request.user)
     Picture = ProfilePicture.Image
+    Cover = ProfilePicture.Cover
     queryset = Videos.objects.filter(User=request.user)
     print(queryset)
     context = {
         'profile': Picture,
+        'cover': Cover,
         'obj': queryset,
     }
     return render(request, 'core/profile.html', context)

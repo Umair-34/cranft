@@ -30,7 +30,12 @@
                     <!-- Author Profile -->
                     <div class="card no-hover text-center">
                         <div class="image-over">
-                            <img class="card-img-top" src="{% static 'assets/img/content/auction_5.html' %}" alt="">
+                            {% if cover|length %}
+                               <img style="height: 200px" class="card-img-top" src="{{ cover.url }}" alt="">
+                            {% else %}
+                                <img class="card-img-top" src="{% static 'assets/img/content/default.png' %}" alt="">
+                            {% endif %}
+
                             <!-- Author -->
                             <div class="author">
                                 <div class="author-thumb avatar-lg">
@@ -38,7 +43,7 @@
                                         <img class="rounded-circle" src="{{ profile.url }}"
                                              alt="">
                                     {% else %}
-                                        <img class="rounded-circle" src="{% static 'assets/img/content/avatar_8.jpg' %}"
+                                        <img class="rounded-circle" src="{% static 'assets/img/content/default.png' %}"
                                              alt="">
                                     {% endif %}
                                 </div>
@@ -54,7 +59,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <a class="btn btn-bordered-white btn-smaller"
-                                              href="{% url 'core:editprofile' %}" >Edit Porfile
+                                           href="{% url 'core:editprofile' %}">Edit Porfile
                                         </a>
                                     </div>
                                     <div class="col">

@@ -25,7 +25,7 @@ class ContactForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("Image", "PhoneNumber", "Tagline")
+        fields = ("Image", "PhoneNumber", "Tagline", "Cover")
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
